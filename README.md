@@ -1,6 +1,6 @@
 # algobase
 
-A collection of data structure wirteen in various languages and SFW to use
+A collection of data structure written in various languages and SFW to use
 
 ## Linked List
 
