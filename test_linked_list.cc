@@ -2,6 +2,7 @@
  *  Source code written by Gabriel Correia
 */
 
+#include <memory>
 #include <iostream>
 
 #define RANDOM_NUMBERS 0
@@ -22,7 +23,7 @@ constexpr unsigned RAN_MAX = 99999, RAN_NUMBERS_COUNT = 100;
 
 int main (void)
 {
-	auto int_values = new linkedlist::double_linked<int>;
+	auto int_values = std::make_shared<linkedlist::double_linked<int>>();
 
 #if RANDOM_NUMBERS
 	/* Generating random numbers and inserting him at the linked list */
@@ -79,8 +80,6 @@ int main (void)
 	int_values->for_each_reverse ([](auto data) {
 		std::cout << data << std::endl;
 	});
-
-	delete int_values;
 
 	return 0;
 }
