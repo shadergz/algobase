@@ -6,9 +6,9 @@
 #include <iostream>
 
 #define RANDOM_NUMBERS 0
-#define NUMBERS_BASE 10
+#define NUMBERS_COUNT_BASE 10
 
-#define VARIOUS_POP 0
+#define VARIOUS_POP 1
 
 #if RANDOM_NUMBERS
 #include <boost/random/mersenne_twister.hpp>
@@ -37,7 +37,7 @@ int main (void)
 	for (unsigned i = 0; i < RAN_NUMBERS_COUNT; i++)
 		int_values->insert (six (random));
 #else
-	for (; count < NUMBERS_BASE; count++)
+	for (; count < NUMBERS_COUNT_BASE; count++)
 		int_values->insert (count);
 #endif
 
@@ -47,7 +47,7 @@ int main (void)
 	for (unsigned i = 0; i < RAN_NUMBERS_COUNT; i++)
 		int_values->insert (six (random));
 #else
-	for (; count < NUMBERS_BASE * 2; count++)
+	for (; count < NUMBERS_COUNT_BASE * 2; count++)
 		int_values->insert (count);
 #endif
 
@@ -57,7 +57,7 @@ int main (void)
 	for (unsigned i = 0; i < RAN_NUMBERS_COUNT; i++)
 		int_values->insert_at (six (random), 10);
 #else
-	for (; count < NUMBERS_BASE * 3; count++)
+	for (; count < NUMBERS_COUNT_BASE * 3; count++)
 		int_values->insert (count);
 #endif
 
