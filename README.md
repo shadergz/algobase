@@ -17,7 +17,7 @@ Usage example:
 ```cpp
 auto double_values = std::make_shared<linkedlist::double_linked<double>> ();
 double_values->insert (4.2E6);
-double_values->insert (2.2E2)
+double_values->insert (2.2E2);
 auto value = double_values->pop_front (1.3E5);
 assert (double_values->size ());
 

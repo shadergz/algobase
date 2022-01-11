@@ -18,17 +18,17 @@
 #include "linked_list.hpp"
 
 #if RANDOM_NUMBERS
-constexpr unsigned RAN_MAX = 99999, RAN_NUMBERS_COUNT = 100;
+constexpr unsigned RAN_MAX = 99999, RAN_NUMBERS_COUNT = 1000;
 #endif
 
 int main (void)
 {
-	auto int_values = std::make_shared<linkedlist::double_linked<int>>();
+	auto int_values = std::make_shared<linkedlist::double_linked<int>> ();
 
 #if RANDOM_NUMBERS
 	/* Generating random numbers and inserting him at the linked list */
 	boost::random::mt19937 random;
-	boost::random::uniform_int_distribution<> six(0, RAN_MAX);
+	boost::random::uniform_int_distribution<> six (0, RAN_MAX);
 #else
 	unsigned count = 0;
 #endif
@@ -77,7 +77,7 @@ int main (void)
 	assert (!int_values->empty ());
 	std::cout << "Linked list size: " << int_values->size () << std::endl;
 
-	int_values->for_each_reverse ([](auto data) {
+	int_values->for_each_reverse ([] (auto data) {
 		std::cout << data << std::endl;
 	});
 
