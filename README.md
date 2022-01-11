@@ -15,10 +15,10 @@ Usage example:
 > Declaring a Double Linked List of double values
 
 ```cpp
-auto double_values = std::make_shared<linkedlist::double_linked<double>>();
-double_values->insert (4.2E10);
+auto double_values = std::make_shared<linkedlist::double_linked<double>> ();
+double_values->insert (4.2E6);
 double_values->insert (2.2E2)
-double_values->pop_front (1.3E5);
+auto value = double_values->pop_front (1.3E5);
 assert (double_values->size ());
 
 /* Doesn't need of deletion (The smart pointer does it by himself) */
