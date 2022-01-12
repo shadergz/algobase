@@ -23,7 +23,7 @@ public:
 	double_linked<T>() : m_head (nullptr), m_last (nullptr) {};
 	~double_linked<T>() 
 	{
-		linkedlist::node<T> *aux = m_head, *next = nullptr;
+		node<T> *aux = m_head, *next = nullptr;
 		while (aux) {
 			next = aux->next;
 			delete aux;
@@ -38,7 +38,7 @@ public:
 
 	size_t size ()
 	{
-		linkedlist::node<T> *aux = m_head;
+		node<T> *aux = m_head;
 		size_t count = 0;
 
 		while (aux) {
@@ -50,8 +50,7 @@ public:
 
 	void insert_at (const T data, const uintptr_t index)
 	{
-		linkedlist::node<T> *aux = nullptr, *index_node = m_head, 
-			*next_aux = nullptr;
+		node<T> *aux = nullptr, *index_node = m_head, *next_aux = nullptr;
 
 		assert ((aux = new node<T>));
 		aux->data = data;
@@ -70,7 +69,7 @@ public:
 
 	void insert (const T data)
 	{
-		linkedlist::node<T> *aux = nullptr;
+		node<T> *aux = nullptr;
 		assert ((aux = new node<T>));
 		aux->data = data;
 		aux->next = aux->prev = nullptr;
@@ -84,20 +83,39 @@ public:
 		}
 	}
 
+	node<T>* search (T data)
+	{
+		node<T> *hand = m_head;
+		while (hand) {
+			if (hand->data == data)
+				break;
+			if (hand->next) hand = hand->next;
+			else assert (hand->next);
+		}
+		return hand;
+	}
+
 	T pop_at (const uintptr_t index)
 	{
-		linkedlist::node<T> *pop = at (index), *next = nullptr, *prev = nullptr;
+		node<T> *pop = at (index);
+		return pop_node (pop);
+	}
+
+	T pop_node (node<T> *pop)
+	{
+		assert (pop);
+
+		node<T> *next = nullptr, *prev = nullptr;
 		T data{0};
 
-		if (pop->next)
-			next = pop->next;
-		if (pop->prev)
-			prev = pop->prev;
+		next = pop->next;
+		prev = pop->prev;
+
 		if (prev)
 			prev->next = next;
 		if (next)
 			next->prev = prev;
-
+		
 		if (pop == m_head)
 			m_head = next;
 		if (pop == m_last)
@@ -105,6 +123,7 @@ public:
 		
 		data = pop->data;
 		delete pop;
+
 		return data;
 	}
 
@@ -120,7 +139,7 @@ public:
 
 	size_t for_each (void (*function)(T))
 	{
-		linkedlist::node<T> *aux = m_head;
+		node<T> *aux = m_head;
 		size_t count = 0;
 		for (; count < size (); count++) {
 			function (aux->data);
@@ -132,7 +151,7 @@ public:
 
 	size_t for_each_reverse (void (*function)(T))
 	{
-		linkedlist::node<T> *aux = m_last;
+		node<T> *aux = m_last;
 		size_t node_count = size (), count = 0;
 		for (; node_count > count; count++) {
 			function (aux->data);
@@ -142,9 +161,31 @@ public:
 		return count;
 	}
 
+	size_t pos (node<T>* curr)
+	{
+		assert (curr);
+
+		node<T> *aux = m_head;
+		size_t pos = -1;
+		for (size_t i = 0; (aux); i++) {
+			if (aux == curr) pos = i;
+			aux = aux->next;
+		}
+
+		assert (pos != -1);
+
+		return pos;
+	}
+
+	T get (node<T> *from)
+	{
+		assert (from);
+		return from->data;
+	}
+
 	node<T>* at (uintptr_t index) 
 	{
-		linkedlist::node<T> *index_node = m_head;
+		node<T> *index_node = m_head;
 
 		for (; index; index--)
 			if (index_node)
@@ -157,7 +198,7 @@ public:
 
 private:
 
-	linkedlist::node<T> *m_head, *m_last;
+	node<T> *m_head, *m_last;
 
 };
 
