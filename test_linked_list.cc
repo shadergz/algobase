@@ -23,7 +23,7 @@ constexpr unsigned RAN_MAX = 99999, RAN_NUMBERS_COUNT = 1000;
 
 int main (void)
 {
-	auto int_values = std::make_shared<linkedlist::double_linked<int>> ();
+	auto int_values = std::make_shared<linkedlist::doubly_linked<int>> ();
 
 #if RANDOM_NUMBERS
 	/* Generating random numbers and inserting him at the linked list */

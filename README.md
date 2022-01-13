@@ -4,7 +4,7 @@ A collection of data structure written in various languages and SFW to use
 
 ## Linked List
 
-### Double Linked List
+### Doubly Linked List
 
 - Most specifically recognized to have two nodes: next and previous
 
@@ -15,7 +15,7 @@ Usage example:
 > Declaring a Double Linked List of double values
 
 ```cpp
-auto double_values = std::make_shared<linkedlist::double_linked<double>> ();
+auto double_values = std::make_shared<linkedlist::doubly_linked<double>> ();
 double_values->insert (4.2E6);
 double_values->insert (2.2E2);
 auto value = double_values->pop_front (1.3E5);

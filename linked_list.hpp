@@ -17,11 +17,11 @@ struct node {
 };
 
 template<typename T>
-class double_linked
+class doubly_linked
 {
 public:
-	double_linked<T>() : m_head (nullptr), m_last (nullptr) {};
-	~double_linked<T>() 
+	doubly_linked<T>() : m_head (nullptr), m_last (nullptr) {};
+	~doubly_linked<T>() 
 	{
 		node<T> *aux = m_head, *next = nullptr;
 		while (aux) {
