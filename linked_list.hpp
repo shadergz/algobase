@@ -31,7 +31,7 @@ public:
 		}
 	}
 
-	size_t empty ()
+	bool empty ()
 	{
 		return !size ();
 	}
@@ -87,8 +87,7 @@ public:
 	{
 		node<T> *hand = m_head;
 		while (hand) {
-			if (hand->data == data)
-				break;
+			if (hand->data == data) break;
 			if (hand->next) hand = hand->next;
 			else assert (hand->next);
 		}
@@ -129,7 +128,7 @@ public:
 
 	T pop_front (void)
 	{
-		return pop_at (size () -1);
+		return pop_at (size () - 1);
 	}
 
 	T pop_back (void)
@@ -161,7 +160,7 @@ public:
 		return count;
 	}
 
-	size_t pos (node<T>* curr)
+	uintptr_t pos (node<T>* curr)
 	{
 		assert (curr);
 
