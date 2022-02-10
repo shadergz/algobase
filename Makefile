@@ -1,6 +1,6 @@
 CC=gcc
 CPPC=g++
-CPPFLAGS=-Wall -O2
+CPPFLAGS=-Wall -O1 -g
 
 all: test_linked_list test_queue
 

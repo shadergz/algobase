@@ -7,12 +7,28 @@
 
 #include "queue.h"
 
+static int Q_default_on_create (void *unused, size_t unused_size)
+{
+    (void)unused;
+    (void)unused_size;
+}
+
+static int Q_default_on_destroy (void *unused, size_t unused_size)
+{
+    (void)unused;
+    (void)unused_size;
+}
+
 queue_t* queue_new ()
 {
     queue_t *queue;
     
     queue = calloc (sizeof (queue_t), 1);
     assert (queue);
+
+    /* Using default callbacks functions instead of checking if every pointer is NULL or not */
+    queue->on_create = Q_default_on_create;
+    queue->on_destroy = Q_default_on_destroy;
     
     return queue;
 }
@@ -30,6 +46,8 @@ static inline Q_node_t* Q_node_new (void *data)
 void queue_enqueue (void *data, queue_t *queue)
 {
     assert (queue);
+
+    queue->on_create (data, queue_size (queue));
     if (queue->tail) {
         queue->tail->next = Q_node_new (data);
         queue->tail = queue->tail->next;
@@ -53,38 +71,60 @@ void* queue_dequeue (queue_t *queue)
         }
     }
 
+    queue->on_destroy (data, 0);
     free (aux);
     return data;
 }
 
 size_t queue_size (queue_t *queue)
 {
-    size_t size;
+    size_t size = 0;
     Q_node_t *aux;
     assert (queue);
 
     aux = queue->head;
-    for (size = 0; (aux); size++) {
+    if (!aux)
+        return size;
+    for (size = 1; (aux); size++) {
         if (aux->next)
             aux = aux->next;
+        else
+            break;
     }
 
     return size;
 }
 
-void queue_delete (queue_t *queue)
+void queue_on_destroy (Q_callback callback, queue_t *queue)
+{
+    assert (queue);
+    queue->on_destroy = callback;
+}
+
+void queue_on_create (Q_callback callback, queue_t *queue)
+{
+    assert (queue);
+    queue->on_create = callback;
+}
+
+size_t queue_delete (queue_t *queue)
 {
     Q_node_t *aux, *node;
+    size_t size;
     assert (queue);
 
     aux = queue->head;
-    for (; (aux); ) {
+    for (size = 0; (aux); size++) {
         node = aux->next;
+        /* Call on_destroy before destroy the object */
+        queue->on_destroy (aux->data, size);
         free (aux);
         aux = node;
     }
 
     free (queue);
+
+    return size;
 }
 
 void queue_foreach (Q_callback callback, queue_t *queue)
