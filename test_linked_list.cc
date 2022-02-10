@@ -15,7 +15,7 @@
 #include <boost/random/uniform_int_distribution.hpp>
 #endif
 
-#include "linked_list.hpp"
+#include "linked_list.hh"
 
 #if RANDOM_NUMBERS
 constexpr unsigned RAN_MAX = 99999, RAN_NUMBERS_COUNT = 1000;

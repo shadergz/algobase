@@ -1,3 +1,7 @@
+/*
+ *  Source code written by Gabriel Correia
+*/
+
 #include <malloc.h>
 #include <assert.h>
 

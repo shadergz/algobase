@@ -1,3 +1,7 @@
+/*
+ *  Source code written by Gabriel Correia
+*/
+
 #pragma once
 
 #include <stddef.h>
@@ -13,7 +17,6 @@ typedef struct _node {
 typedef struct _queue {
     Q_node_t *head, *tail;
 } queue_t;
-
 
 typedef int (*Q_callback) (void*, size_t);
 
