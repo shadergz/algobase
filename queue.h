@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <stdbool.h>
 #include <stddef.h>
 
 /* A single linked list used inside the queue algorithm */
@@ -49,5 +50,11 @@ void queue_on_create (Q_callback callback, queue_t *queue);
 /* Returns the queue size */
 size_t queue_size (queue_t *queue);
 
+/* Checking functions */
+bool queue_is_full (queue_t *queue);
+bool queue_is_empty (queue_t *queue);
+
+/* Cleanup the queue but doesn't destory him (only the nodes will be destroyed) */
+size_t queue_clear (queue_t *queue);
 /* Destroy the queue and all elements inside of him */
 size_t queue_delete (queue_t *queue);

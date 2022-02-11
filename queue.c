@@ -107,7 +107,7 @@ void queue_on_create (Q_callback callback, queue_t *queue)
     queue->on_create = callback;
 }
 
-size_t queue_delete (queue_t *queue)
+size_t queue_clear (queue_t *queue)
 {
     Q_node_t *aux, *node;
     size_t size;
@@ -121,6 +121,26 @@ size_t queue_delete (queue_t *queue)
         free (aux);
         aux = node;
     }
+
+    queue->head = queue->tail = NULL;
+
+    return size;
+}
+
+
+bool queue_is_full (queue_t *queue)
+{
+    return queue_size (queue);
+}
+bool queue_is_empty (queue_t *queue)
+{
+    return !queue_size (queue);
+}
+
+size_t queue_delete (queue_t *queue)
+{
+    size_t size;
+    size = queue_clear (queue);
 
     free (queue);
 
