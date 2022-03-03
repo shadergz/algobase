@@ -21,4 +21,5 @@ run: $(TEST_PROGRAMS)
 clean:
 	-rm -f $(TEST_PROGRAMS)
 
-.PHONY: all clean
+.PHONY: all clean run
+
