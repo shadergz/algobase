@@ -14,7 +14,7 @@ static int at_enqueue (void *data, size_t queue_len)
     return 0;
 }
 
-static int at_destroy (void *data, size_t pos)
+static int at_dequeue (void *data, size_t pos)
 {
     printf ("The value %d at position %ld will be deleted\n", *((int*)data), pos);
     return 0;
@@ -28,7 +28,7 @@ int main (void)
     
     /* Setting functions callback */
     queue_on_create (at_enqueue, main_queue);
-    queue_on_destroy (at_destroy, main_queue);
+    queue_on_destroy (at_dequeue, main_queue);
 
     for (int i = 0; i < sizeof (numbers) / sizeof (int); i++)
         queue_enqueue (&numbers[i], main_queue);

@@ -23,7 +23,7 @@ queue_t* queue_new ()
 {
     queue_t *queue;
     
-    queue = calloc (sizeof (queue_t), 1);
+    queue = calloc (1, sizeof (queue_t));
     assert (queue);
 
     /* Using default callbacks functions instead of checking if every pointer is NULL or not */
@@ -35,12 +35,12 @@ queue_t* queue_new ()
 
 static inline Q_node_t* Q_node_new (void *data)
 {
-    Q_node_t *new;
+    Q_node_t *qnew;
     
-    new = calloc (sizeof (Q_node_t), 1);
-    assert (new);
-    new->data = data;
-    return new;
+    qnew = calloc (1, sizeof (Q_node_t));
+    assert (qnew);
+    qnew->data = data;
+    return qnew;
 }
 
 void queue_enqueue (void *data, queue_t *queue)

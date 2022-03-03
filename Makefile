@@ -2,15 +2,23 @@ CC=gcc
 CPPC=g++
 CPPFLAGS=-Wall -O1 -g
 
-all: test_linked_list test_queue
+TEST_PROGRAMS=test_linked_list test_queue test_hm
 
-test_linked_list: test_linked_list.cc
-	$(CPPC) $(CPPFLAGS) -o $@ $^
+all: $(TEST_PROGRAMS)
+
+%: %.c
+	$(CC) -o $@ $^
 
 test_queue: test_queue.c queue.c
-	$(CC) -o $@ $^ 
+	$(CC) -o $@ $^
+
+%: %.cc
+	$(CPPC) $(CPPFLAGS) -o $@ $^
+
+run: $(TEST_PROGRAMS)
+	for program in $(TEST_PROGRAMS); do ./$$program; done
 
 clean:
-	-rm -f test_linked_list test_queue
+	-rm -f $(TEST_PROGRAMS)
 
 .PHONY: all clean
