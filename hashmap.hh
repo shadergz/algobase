@@ -3,12 +3,9 @@
 */
 
 #include <iostream>
-
 #include <cassert>
 
-
 class hashmap {
-    
 public:
     hashmap ()
     {
@@ -29,10 +26,10 @@ public:
         return true;
     }
 
-    /* Duplicate the string */
     std::string search (const std::string& key) 
     {
         auto bucket = select_bucket (key);
+        /* Duplicating the string at retrun (Isn't a good idea) */
         if (bucket->key == key) {
             return bucket->value;
         }
@@ -49,6 +46,7 @@ public:
 private:
     class bucket {
     public:
+        /* Duplicating each value */
         std::string key, value;    
     };
 
@@ -70,7 +68,6 @@ private:
         }
         digest %= 100;
         //std::cout << digest << std::endl;
-
         return digest;
     }
 };
