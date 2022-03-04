@@ -45,13 +45,15 @@ queue_foreach (display_numbers, main_queue);
 queue_delete (main_queue);
 ```
 
-> Check the impl source code in 'queue.c'
+> Check the impl source code in 'test-queue.c'
 
 ## Hashmap
 
 A structured hash table with a pair of key/value
 
 PS: Chaining isn't implemented
+
+### Hashmap without chaining
 
 Usage example:
 
