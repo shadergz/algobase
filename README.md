@@ -24,7 +24,7 @@ assert (double_values->size ());
 /* Doesn't need of deletion (The smart pointer does it by himself) */
 ```
 
-> See more in 'test_linked_list.cc'
+> See more in 'test-linkedlist.cc'
 
 ## Queue
 
@@ -49,6 +49,11 @@ queue_delete (main_queue);
 
 ## Hashmap
 
+A structured hash table with a pair of key/value
+PS: Chaining isn't implemented
+
+Usage example:
+
 ```cc
 hashmap gabriel;
 gabriel.insert ("Name", "Gabriel Correia");
@@ -59,3 +64,5 @@ std::cout << "User Name: " << gabriel["Name"] << std::endl;
 std::cout << "User ID: " << gabriel["ID"] << std::endl;
 std::cout << "Is user a developer? " << gabriel["DEV"] << std::endl;
 ```
+
+> See more in the 'test-hm.cc' source code

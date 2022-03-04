@@ -2,14 +2,14 @@ CC=gcc
 CPPC=g++
 CPPFLAGS=-Wall -O1 -g
 
-TEST_PROGRAMS=test_linked_list test_queue test_hm
+TEST_PROGRAMS=test-linkedlist test-queue test-hm
 
 all: $(TEST_PROGRAMS)
 
 %: %.c
 	$(CC) -o $@ $^
 
-test_queue: test_queue.c queue.c
+test-queue: test-queue.c queue.c
 	$(CC) -o $@ $^
 
 %: %.cc
