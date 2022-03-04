@@ -8,11 +8,11 @@ A collection of data structure written in various languages and SFW to use
 
 - Most specifically recognized to have two nodes: next and previous
 
-- Operations available: Insertion / Deletion / Selection / "For each" operations
+- Operations available: Insertion / Deletion / Selection / "Foreach" operations
 
 Usage example:
 
-> Declaring a Double Linked List of double values
+> Declaring a Doubly Linked List of double values
 
 ```cc
 auto double_values = std::make_shared<linkedlist::doubly_linked<double>> ();
@@ -50,6 +50,7 @@ queue_delete (main_queue);
 ## Hashmap
 
 A structured hash table with a pair of key/value
+
 PS: Chaining isn't implemented
 
 Usage example:
