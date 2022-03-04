@@ -51,11 +51,11 @@ queue_delete (main_queue);
 
 ```cc
 hashmap gabriel;
-    gabriel.insert ("Name", "Gabriel Correia");
-    gabriel.insert ("ID", "10010219");
-    gabriel.insert ("DEV", "Maybe :)");
+gabriel.insert ("Name", "Gabriel Correia");
+gabriel.insert ("ID", "10010219");
+gabriel.insert ("DEV", "Maybe :)");
     
-    std::cout << "User Name: " << gabriel["Name"] << std::endl;
-    std::cout << "User ID: " << gabriel["ID"] << std::endl;
-    std::cout << "Is user a developer? " << gabriel["DEV"] << std::endl;
+std::cout << "User Name: " << gabriel["Name"] << std::endl;
+std::cout << "User ID: " << gabriel["ID"] << std::endl;
+std::cout << "Is user a developer? " << gabriel["DEV"] << std::endl;
 ```
