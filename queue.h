@@ -9,6 +9,7 @@
 
 /* A single linked list used inside the queue algorithm */
 typedef int (*Q_callback) (void*, size_t);
+typedef int (*Q_user_callback) (void*, void*, size_t);
 
 typedef struct _node {
     /* The stored data */
@@ -38,6 +39,7 @@ void queue_enqueue (void *data, queue_t *queue);
  *  be immediately stopped
 */
 void queue_foreach (Q_callback callback, queue_t *queue);
+void queue_foreach_user (Q_user_callback callback, void *user, queue_t *queue);
 
 /* Dequeue a node element and returns his stored data */
 void* queue_dequeue (queue_t *queue);
@@ -53,6 +55,9 @@ size_t queue_size (queue_t *queue);
 /* Checking functions */
 bool queue_is_full (queue_t *queue);
 bool queue_is_empty (queue_t *queue);
+
+/* Select a queue data from a position */
+void* queue_select (size_t pos, queue_t *queue);
 
 /* Cleanup the queue but doesn't destory him (only the nodes will be destroyed) */
 size_t queue_clear (queue_t *queue);

@@ -160,3 +160,33 @@ void queue_foreach (Q_callback callback, queue_t *queue)
         aux = aux->next;
     }
 }
+
+void queue_foreach_user (Q_user_callback callback, void *user, queue_t *queue)
+{
+    Q_node_t *aux;
+    size_t pos;
+    assert (queue);
+
+    aux = queue->head;
+    for (pos = 0; (aux); pos++) {
+        if (callback (aux->data, user, pos))
+            break;
+        aux = aux->next;
+    }
+}
+
+void* queue_select (size_t pos, queue_t *queue)
+{
+    Q_node_t *aux;
+    void *data = NULL;
+    assert (queue);
+
+    aux = queue->head;
+    for (size_t i = 0; (i < pos) && (aux); i++)
+        aux = aux->next;
+
+    if (aux)
+        data = aux->data;
+
+    return data;
+}
