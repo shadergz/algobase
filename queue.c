@@ -11,12 +11,16 @@ static int Q_default_on_create (void *unused, size_t unused_size)
 {
     (void)unused;
     (void)unused_size;
+
+	return 0;
 }
 
 static int Q_default_on_destroy (void *unused, size_t unused_size)
 {
     (void)unused;
     (void)unused_size;
+
+	return 0;
 }
 
 queue_t* queue_new ()
@@ -116,7 +120,7 @@ size_t queue_clear (queue_t *queue)
     aux = queue->head;
     for (size = 0; (aux); size++) {
         node = aux->next;
-        /* Call on_destroy before destroy the object */
+        /* Calling on_destroy before destroy the object */
         queue->on_destroy (aux->data, size);
         free (aux);
         aux = node;

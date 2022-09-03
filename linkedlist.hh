@@ -23,7 +23,7 @@ public:
 	doubly_linked<T>() : m_head (nullptr), m_last (nullptr) {};
 	~doubly_linked<T>() 
 	{
-		node<T> *aux = m_head, *next = nullptr;
+		node<T> *aux = m_head, *next;
 		while (aux) {
 			next = aux->next;
 			delete aux;
@@ -50,7 +50,7 @@ public:
 
 	void insert_at (const T data, const uintptr_t index)
 	{
-		node<T> *aux = nullptr, *index_node = m_head, *next_aux = nullptr;
+		node<T> *aux, *index_node, *next_aux = nullptr;
 
 		assert ((aux = new node<T>));
 		aux->data = data;
@@ -69,7 +69,7 @@ public:
 
 	void insert (const T data)
 	{
-		node<T> *aux = nullptr;
+		node<T> *aux;
 		assert ((aux = new node<T>));
 		aux->data = data;
 		aux->next = aux->prev = nullptr;
@@ -104,8 +104,8 @@ public:
 	{
 		assert (pop);
 
-		node<T> *next = nullptr, *prev = nullptr;
-		T data{0};
+		node<T> *next, *prev;
+		T data;
 
 		next = pop->next;
 		prev = pop->prev;

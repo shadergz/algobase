@@ -4,7 +4,7 @@
 
 static int display_numbers (void *data, size_t position)
 {
-    printf ("Position = %d : Value = %d\n", position, *((int*)data));
+    printf ("Position = %zu : Value = %d\n", position, *((int*)data));
     return 0;
 }
 
@@ -23,7 +23,9 @@ static int at_dequeue (void *data, size_t pos)
 int main (void)
 {
     static int numbers[] = {12, 43, 234, 65, 2, 56, 34, 643, 3, 12, 52, 42, 52, 7725, 526,45, 256, 1};
-    
+
+	(void)numbers;
+
     queue_t *main_queue = queue_new ();
     
     /* Setting functions callback */
@@ -38,5 +40,6 @@ int main (void)
 
     queue_foreach (display_numbers, main_queue);
     queue_delete (main_queue);
+
     return 0;
 }

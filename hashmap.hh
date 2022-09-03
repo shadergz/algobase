@@ -5,11 +5,13 @@
 #include <iostream>
 #include <cassert>
 
+constexpr uint8_t NUM_BUCKETS = 255;
+
 class hashmap {
 public:
     hashmap ()
     {
-        buckets_array = new bucket[255];
+        buckets_array = new bucket[NUM_BUCKETS];
     }
 
     ~hashmap ()
@@ -29,7 +31,7 @@ public:
     std::string search (const std::string& key) 
     {
         auto bucket = select_bucket (key);
-        /* Duplicating the string at retrun (Isn't a good idea) */
+        /* Duplicating the string at return (Isn't a good idea) */
         if (bucket->key == key) {
             return bucket->value;
         }
@@ -55,19 +57,20 @@ private:
     bucket* select_bucket (const std::string& key)
     {
         bucket *selected_bucket;
-        selected_bucket = &buckets_array[hash (key)];
+        selected_bucket = &buckets_array[hash (key.c_str())];
         assert (selected_bucket);
         return selected_bucket;
     }
 
-    int hash (const std::string& key) 
-    {
-        int digest(0);
-        for (auto caracter : key) {
-            digest += caracter;
-        }
-        digest %= 100;
-        //std::cout << digest << std::endl;
-        return digest;
-    }
+	/* DJB2 similar algorithm */
+	int hash (const char* str)
+	{
+		unsigned long hash = 5381;
+		int c;
+
+		while ((c = *str++))
+			hash = ((hash << 5) + hash) + c;
+
+		return (int)(hash % NUM_BUCKETS);
+	}
 };
